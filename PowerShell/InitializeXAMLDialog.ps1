@@ -69,9 +69,10 @@ function Initialize-XAMLDialog
 
     #AutoFind all controls 
     $xaml.SelectNodes("//*[@*[contains(translate(name(.),'n','N'),'Name')]]")  | ForEach-Object {  
-        New-Variable  -Name $_.Name -Value $Window.FindName($_.Name) -Force -Scope Global
+        #New-Variable  -Name $_.Name -Value $Window.FindName($_.Name) -Force -Scope Global
         Write-Host "Variable named: Name $($_.Name)"
     }
+$Window.ShowDialog() | Out-Null
 
 
 }
@@ -80,5 +81,4 @@ function Initialize-XAMLDialog
 
 Initialize-XAMLDialog $XAMLPath
 
-$Window.ShowDialog() | Out-Null
 
